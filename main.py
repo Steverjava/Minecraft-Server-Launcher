@@ -5,6 +5,15 @@ import os
 import socket
 
 
+def logo():
+    print("  _________  __                                       __                        ")
+    print(" /   _____/_/  |_   ____  ___  __  ____  _______     |__|_____   ___  _______   ")
+    print(" \\_____  \\ \\   __\\_/ __ \\ \\  \\/ /_/ __ \\ \\_  __ \\    |  |\\__  \\  \\  \\/ /\\__  \\  ")
+    print(" /        \\ |  |  \\  ___/  \\   / \\  ___/  |  | \\/    |  | / __ \\_ \\   /  / __ \\_")
+    print("/_______  / |__|   \\___  >  \\_/   \\___  > |__|   /\\__|  |(____  /  \\_/  (____  /")
+    print("        \\/             \\/             \\/         \\______|     \\/             \\/ ")
+
+
 def clear():
     if os.name == 'nt':
         os.system('cls')
@@ -22,12 +31,7 @@ if parameter == "y":
 else:
     exit()
 
-print("  _________  __                                       __                        ")
-print(" /   _____/_/  |_   ____  ___  __  ____  _______     |__|_____   ___  _______   ")
-print(" \\_____  \\ \\   __\\_/ __ \\ \\  \\/ /_/ __ \\ \\_  __ \\    |  |\\__  \\  \\  \\/ /\\__  \\  ")
-print(" /        \\ |  |  \\  ___/  \\   / \\  ___/  |  | \\/    |  | / __ \\_ \\   /  / __ \\_")
-print("/_______  / |__|   \\___  >  \\_/   \\___  > |__|   /\\__|  |(____  /  \\_/  (____  /")
-print("        \\/             \\/             \\/         \\______|     \\/             \\/ ")
+logo()
 
 print("Now we are examining your computer system and its architecture.")  # 告知用户检测信息
 System = platform.system() + " " + platform.version()
@@ -135,6 +139,3 @@ else:
     except IOError as e:
         print("File operation error:", e)
 
-clear()
-
-print("*****Quick Start *****")

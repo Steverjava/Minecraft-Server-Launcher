@@ -1,6 +1,7 @@
 import subprocess
 import os
 
+# 启动服务器脚本
 '''
 Xms = input("Xms")
 Xmx = input("Xmx")
@@ -16,6 +17,7 @@ for i in pi.stdout:
     print(i.decode('cp936'))
 '''
 
+# IP查询
 '''
 if os.name == 'posix':
     command = 'ifconfig'
@@ -32,6 +34,8 @@ output, error = process.communicate()
 output = output.strip()
 print(output.decode('cp936'))
 '''
+
+# logo
 '''
 print("  _________  __                                       __                        ")
 print(" /   _____/_/  |_   ____  ___  __  ____  _______     |__|_____   ___  _______   ")
@@ -40,6 +44,8 @@ print(" /        \\ |  |  \\  ___/  \\   / \\  ___/  |  | \\/    |  | / __ \\_ \
 print("/_______  / |__|   \\___  >  \\_/   \\___  > |__|   /\\__|  |(____  /  \\_/  (____  /")
 print("        \\/             \\/             \\/         \\______|     \\/             \\/ ")
 '''
+
+# EULA
 '''
 file_path = 'eula.txt'
 expected_content = "eula=true"
@@ -102,3 +108,9 @@ else:
         except IOError as e:
             print("File operation error:", e)
 '''
+
+# 认证库 库
+library = []
+
+path = str(input(""))
+
