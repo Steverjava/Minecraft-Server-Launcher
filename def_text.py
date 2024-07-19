@@ -1,7 +1,15 @@
 import os
 import subprocess
 import re
+import time
 
+#延迟
+def timed():
+    for i in range(4):
+        time.sleep(0.5)
+        print("... ", end="")
+    print("... ")
+    time.sleep(2)
 
 #打印我的logo
 def logo():
@@ -160,6 +168,9 @@ Authentication menu: -1. Server restart menu jump, Minecraft Settings jump
         Open authentication: -a
             Back to authentication menu -0
             Set up the authentication library: -a
+                Return -0
+                Add authentication library: -1
+                Management certification library: -2
             Set the default authentication library: -b
                 Return -0
                 Authentication Library Menu - Back after Settings
@@ -184,6 +195,9 @@ def open_authentication(authlib_injector):
     variable_set_up_the_authentication_library = "a"
     variable_set_the_default_authentication_library = "b"
 
+    variable_add_authentication_library = "1"
+    variable_management_certification_library = "2"
+
     default_authentication_library = ""
 
     #打印选项
@@ -202,64 +216,106 @@ def open_authentication(authlib_injector):
     elif variable == variable_set_up_the_authentication_library:  #设置认证库
         print("Please wait...")
 
-        #用户输入认证库
-        authentication_library = str(input("Please enter your certification library: (should be URL)"))
+        clear()
 
-        #判断是否为网址
-        if re.match(r'https?://', authentication_library):
-            pass
-        else:
+        print("0.Return"
+              "\n1.Add authentication library"
+              "\n2.Management certification library")
+
+        variable = str(input("Please choose:"))
+
+        if variable == variable_add_authentication_library:
+            print("Please wait...")
+
+            add_authentication_library(authlib_injector, library)
+
+        elif variable == variable_management_certification_library:
+            print("Please wait...")
+
+            management_certification_library(authlib_injector, library)
+        else:  # 错误输入
             print("Invalid input!")
             open_authentication(authlib_injector)
-
-        #判断输入认证库是否是新库
-        if authentication_library in library:  #不为新库
-            print("The authentication library has been started!")
-            command = "-javaagent:" + authlib_injector + authentication_library  #启动认证命令
-        elif  not authentication_library :  #输入enter
-            print("Default authentication library enabled!")
-            command = "-javaagent:" + authlib_injector + default_authentication_library  #启动认证命令（默认库）
-        else:  #为新库
-            #是否添加到认证库 库
-            print("Detected as a new library."
-                  "\nIs the library added to the authentication library?[y/n]")
-
-            variable = str(input(""))
-
-            #进行判断
-            if variable == "y":  #添加
-                library.append(authentication_library)
-                print("Added!")
-            elif variable == "n":  #不添加
-                print("ok,don't!")
-            else:  #错误输入
-                print("Invalid input!")
-                open_authentication(authlib_injector)
-
-            #是否设置成默认库
-            print("Is it set as the default library?[y/n]")
-
-            variable = str(input(""))
-
-            #进行判断
-            if variable == "y":  #设置
-                default_authentication_library = authentication_library
-                command = "-javaagent:" + authlib_injector + authentication_library  #启动认证命令
-            elif variable == "n":  #不设置
-                command = "-javaagent:" + authlib_injector + authentication_library  #启动认证命令
-            else:  #错误输入
-                print("Invalid input!")
-                open_authentication(authlib_injector)
+        
 
     elif variable == variable_set_the_default_authentication_library:  #设置默认认证库
         print("Please wait...")
 
-        print(library)
+        for index, item in enumerate(library):
+            print(f"[{index + 1}] {item}")
 
 
     elif not variable:
-        if
 
+        clear()
+
+
+def add_authentication_library(authlib_injector, library):
+    clear()
+
+    default_authentication_library = ""
+
+    # 用户输入认证库
+    authentication_library = str(input("Please enter your certification library: (should be URL)"))
+
+    # 判断是否为网址
+    if re.match(r'https?://', authentication_library):
+        pass
+    else:
+        print("Invalid input!")
+        open_authentication(authlib_injector)
+
+    # 判断输入认证库是否是新库
+    if authentication_library in library:  # 不为新库
+        print("The authentication library has been started!")
+        command = "-javaagent:" + authlib_injector + authentication_library  # 启动认证命令
+    elif not authentication_library:  # 输入enter
+        print("Default authentication library enabled!")
+        command = "-javaagent:" + authlib_injector + default_authentication_library  # 启动认证命令（默认库）
+    else:  # 为新库
+        # 是否添加到认证库 库
+        print("Detected as a new library."
+              "\nIs the library added to the authentication library?[y/n]")
+
+        variable = str(input(""))
+
+        # 进行判断
+        if variable == "y":  # 添加
+            library.append(authentication_library)
+            print("Added!")
+        elif variable == "n":  # 不添加
+            print("ok,don't!")
+        else:  # 错误输入
+            print("Invalid input!")
+            open_authentication(authlib_injector)
+
+        # 是否设置成默认库
+        print("Is it set as the default library?[y/n]")
+
+        variable = str(input(""))
+
+        # 进行判断
+        if variable == "y":  # 设置
+            default_authentication_library = authentication_library
+            command = "-javaagent:" + authlib_injector + authentication_library  # 启动认证命令
+        elif variable == "n":  # 不设置
+            command = "-javaagent:" + authlib_injector + authentication_library  # 启动认证命令
+        else:  # 错误输入
+            print("Invalid input!")
+            open_authentication(authlib_injector)
+
+
+def management_certification_library(authlib_injector, library):
+    clear()
+
+    long = str(len(library))
+    if long == "0":
+        print("The authentication library is empty!"
+              "\nPlease go to Add authentication library to add library.")
+        open_authentication(authlib_injector)
+    else:
+        for index, item in enumerate(library):
+            print(f"[{index + 1}] {item}")
 
 
 def close_authentication():

@@ -110,7 +110,9 @@ else:
 '''
 
 # 认证库 库
-library = []
+'''
+library = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-path = str(input(""))
-
+for index, item in enumerate(library):
+    print(f"[{index + 1}] {item}")
+'''
