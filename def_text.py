@@ -3,7 +3,8 @@ import subprocess
 import re
 import time
 
-#延迟
+
+# 延迟
 def timed():
     for i in range(4):
         time.sleep(0.5)
@@ -11,7 +12,8 @@ def timed():
     print("... ")
     time.sleep(2)
 
-#打印我的logo
+
+# 打印我的logo
 def logo():
     print("  _________  __                                       __                        ")
     print(" /   _____/_/  |_   ____  ___  __  ____  _______     |__|_____   ___  _______   ")
@@ -20,13 +22,14 @@ def logo():
     print("/_______  / |__|   \\___  >  \\_/   \\___  > |__|   /\\__|  |(____  /  \\_/  (____  /")
     print("        \\/             \\/             \\/         \\______|     \\/             \\/ ")
 
-#清屏
+
+# 清屏
 def clear():
-    if os.name == 'nt':  #检测系统
-        os.system('cls')  #win
+    if os.name == 'nt':  # 检测系统
+        os.system('cls')  # win
     elif os.name == 'posix':
-        os.system('clear')  #mac Linux
-    else:  #报错
+        os.system('clear')  # mac Linux
+    else:  # 报错
         print("Please submit a request on GitHub with your system information and a screenshot of the error!")
 
 
@@ -82,11 +85,11 @@ Main Menu:
 '''
 
 
-#主菜单
+# 主菜单
 def main_menu(authlib_injector):
-    clear()  #清屏
+    clear()  # 清屏
 
-    #设置标准变量
+    # 设置标准变量
     variable_authentication_menu = '1'
     variable_more_settings_menus = '2'
     variable_minecraft_game_menu = '3'
@@ -94,7 +97,7 @@ def main_menu(authlib_injector):
     variable_server_restart_menu = '5'
     variable_exit = '6'
 
-    #打印选项
+    # 打印选项
     print("***** Main Menu *****")
     print("1.Authentication menu"
           "\n2.More settings menus"
@@ -103,61 +106,61 @@ def main_menu(authlib_injector):
           "\n5.Server restart menu"
           "\n6.Exit")
 
-    #用户输入选项
+    # 用户输入选项
     variable = str(input("Please select the menu:"))
 
-    #进行判断
-    if variable == variable_authentication_menu:  #转到认证菜单
+    # 进行判断
+    if variable == variable_authentication_menu:  # 转到认证菜单
         print("Please wait...")
         authentication_menu(authlib_injector)
-    elif variable == variable_more_settings_menus:  #转到更多设置菜单
+    elif variable == variable_more_settings_menus:  # 转到更多设置菜单
         print("Please wait...")
         more_settings_menus()
-    elif variable == variable_minecraft_game_menu:  #转到Minecraft Game菜单
+    elif variable == variable_minecraft_game_menu:  # 转到Minecraft Game菜单
         print("Please wait...")
         minecraft_game_menu()
-    elif variable == variable_minecraft_settings_menu:  #转到Minecraft Setting菜单
+    elif variable == variable_minecraft_settings_menu:  # 转到Minecraft Setting菜单
         print("Please wait...")
         minecraft_settings_menu()
-    elif variable == variable_server_restart_menu:  #转到服务器重启菜单
+    elif variable == variable_server_restart_menu:  # 转到服务器重启菜单
         print("Please wait...")
         server_restart_menu()
-    elif variable == variable_exit:  #退出
+    elif variable == variable_exit:  # 退出
         exit()
-    else:  #错误输入
+    else:  # 错误输入
         print("Invalid input!")
         main_menu(authlib_injector)
 
 
-#认证菜单
+# 认证菜单
 def authentication_menu(authlib_injector):
-    clear()  #清屏
+    clear()  # 清屏
 
-    #设置标准变量
+    # 设置标准变量
     variable_return_to_main_menu = "0"
     variable_open_authentication = "a"
     variable_close_authentication = "b"
 
-    #打印选项
+    # 打印选项
     print("***** Authentication Menu *****")
     print("0.Return to main menu"
           "\na.Open authentication"
           "\nb.Close authentication")
 
-    #用户输入选项
+    # 用户输入选项
     variable = str(input("Please select the menu:"))
 
-    #进行判断
-    if variable == variable_return_to_main_menu:  #返回主菜单
+    # 进行判断
+    if variable == variable_return_to_main_menu:  # 返回主菜单
         print("Please wait...")
         main_menu(authlib_injector)
-    elif variable == variable_open_authentication:  #开启认证菜单
+    elif variable == variable_open_authentication:  # 开启认证菜单
         print("Please wait...")
         open_authentication(authlib_injector)
-    elif variable == variable_close_authentication:  #关闭认证菜单
+    elif variable == variable_close_authentication:  # 关闭认证菜单
         print("Please wait...")
         close_authentication()
-    else:  #错误输入
+    else:  # 错误输入
         print("Invalid input!")
         authentication_menu(authlib_injector)
 
@@ -184,13 +187,13 @@ Authentication menu: -1. Server restart menu jump, Minecraft Settings jump
 '''
 
 
-    #开启认证菜单
+# 开启认证菜单
 def open_authentication(authlib_injector):
-    clear()  #清屏
+    clear()  # 清屏
 
-    library = []  #创建认证库 库
+    library = []  # 创建认证库 库
 
-    #设置标准变量
+    # 设置标准变量
     variable_back_to_authentication_menu = "0"
     variable_set_up_the_authentication_library = "a"
     variable_set_the_default_authentication_library = "b"
@@ -199,61 +202,78 @@ def open_authentication(authlib_injector):
     variable_management_certification_library = "2"
 
     default_authentication_library = ""
+    command = ""
 
-    #打印选项
+    # 打印选项
     print("***** Open Authentication *****")
     print("0.Authentication Menu"
           "\na.Set up the authentication library"
           "\nb.Set the default authentication library")
 
-    #用户输入选项
+    # 用户输入选项
     variable = str(input("Please choose:"))
 
-    #进行判断
-    if variable == variable_back_to_authentication_menu:  #返回认证菜单
+    # 进行判断
+    if variable == variable_back_to_authentication_menu:  # 返回认证菜单
         print("Please wait...")
         authentication_menu(authlib_injector)
-    elif variable == variable_set_up_the_authentication_library:  #设置认证库
+    elif variable == variable_set_up_the_authentication_library:  # 设置认证库
         print("Please wait...")
 
         clear()
 
+        # 打印选项
         print("0.Return"
               "\n1.Add authentication library"
               "\n2.Management certification library")
 
+        # 用户输入选项
         variable = str(input("Please choose:"))
 
+        # 添加认证库
         if variable == variable_add_authentication_library:
             print("Please wait...")
 
-            add_authentication_library(authlib_injector, library)
+            add_authentication_library(authlib_injector, library, default_authentication_library)
 
+        # 管理认证库
         elif variable == variable_management_certification_library:
             print("Please wait...")
 
-            management_certification_library(authlib_injector, library)
+            management_certification_library(authlib_injector, library, default_authentication_library)
+
         else:  # 错误输入
             print("Invalid input!")
             open_authentication(authlib_injector)
-        
 
-    elif variable == variable_set_the_default_authentication_library:  #设置默认认证库
+    elif variable == variable_set_the_default_authentication_library:  # 设置默认认证库
         print("Please wait...")
 
         for index, item in enumerate(library):
             print(f"[{index + 1}] {item}")
 
+    elif not variable:  # 输入enter
 
-    elif not variable:
+        if not default_authentication_library:
+            print("Default library not found!")
+            open_authentication(authlib_injector)
 
-        clear()
+        else:
+            command = "-javaagent:" + authlib_injector + default_authentication_library
+            minecraft_game_menu()
+
+    else:  # 错误输入
+        print("Invalid input!")
+        open_authentication(authlib_injector)
+
+    return command
 
 
-def add_authentication_library(authlib_injector, library):
+# 添加认证库
+def add_authentication_library(authlib_injector, library, default_authentication_library):
     clear()
 
-    default_authentication_library = ""
+    command = ""
 
     # 用户输入认证库
     authentication_library = str(input("Please enter your certification library: (should be URL)"))
@@ -261,9 +281,11 @@ def add_authentication_library(authlib_injector, library):
     # 判断是否为网址
     if re.match(r'https?://', authentication_library):
         pass
-    else:
+    elif not authlib_injector:
+        pass
+    else:  # 错误输入
         print("Invalid input!")
-        open_authentication(authlib_injector)
+        add_authentication_library(authlib_injector, library, default_authentication_library)
 
     # 判断输入认证库是否是新库
     if authentication_library in library:  # 不为新库
@@ -272,12 +294,13 @@ def add_authentication_library(authlib_injector, library):
     elif not authentication_library:  # 输入enter
         print("Default authentication library enabled!")
         command = "-javaagent:" + authlib_injector + default_authentication_library  # 启动认证命令（默认库）
+        open_authentication(authlib_injector)
     else:  # 为新库
         # 是否添加到认证库 库
         print("Detected as a new library."
               "\nIs the library added to the authentication library?[y/n]")
 
-        variable = str(input(""))
+        variable = str(input(""))  # 获得输入
 
         # 进行判断
         if variable == "y":  # 添加
@@ -287,7 +310,7 @@ def add_authentication_library(authlib_injector, library):
             print("ok,don't!")
         else:  # 错误输入
             print("Invalid input!")
-            open_authentication(authlib_injector)
+            add_authentication_library(authlib_injector, library, default_authentication_library)
 
         # 是否设置成默认库
         print("Is it set as the default library?[y/n]")
@@ -302,20 +325,59 @@ def add_authentication_library(authlib_injector, library):
             command = "-javaagent:" + authlib_injector + authentication_library  # 启动认证命令
         else:  # 错误输入
             print("Invalid input!")
-            open_authentication(authlib_injector)
+            add_authentication_library(authlib_injector, library, default_authentication_library)
+
+    return [default_authentication_library, command]  # 返回变量
 
 
-def management_certification_library(authlib_injector, library):
+# 管理认证库
+def management_certification_library(authlib_injector, library, default_authentication_library):
     clear()
 
-    long = str(len(library))
-    if long == "0":
+    long = str(len(library))  # 获得当前库的长度
+
+    variable_return = "0"
+    variable_add_library = "a"
+    variable_delete_library = "b"
+    variable_enable_library = "c"
+    variable_close_library = "d"
+
+    # 判断
+    if long == "0":  # 为零则转跳到添加认证库
         print("The authentication library is empty!"
               "\nPlease go to Add authentication library to add library.")
-        open_authentication(authlib_injector)
-    else:
-        for index, item in enumerate(library):
+        add_authentication_library(authlib_injector, library, default_authentication_library)
+
+    else:  # 不为零
+        for index, item in enumerate(library):  # 输出当前库中的认证库
             print(f"[{index + 1}] {item}")
+
+        print("***** Manage The Certification Library *****"
+              "\n0.Return"
+              "\na.Add library"
+              "\nb.Delete library"
+              "\nc.Enable library"
+              "\nd.Close library")
+
+        variable = str(input("Please choose:"))
+        if variable == variable_return:
+            print("Please wait...")
+            open_authentication(authlib_injector)
+
+        elif variable == variable_add_library:
+            print("Please wait...")
+
+            # 用户输入认证库
+            authentication_library = str(input("Please enter your certification library: (should be URL)"))
+
+            # 判断是否为网址
+            if re.match(r'https?://', authentication_library):
+                pass
+            elif not authlib_injector:
+                pass
+            else:  # 错误输入
+                print("Invalid input!")
+                management_certification_library(authlib_injector, library, default_authentication_library)
 
 
 def close_authentication():
@@ -323,6 +385,7 @@ def close_authentication():
 
     variable_back_to_authentication_menu = "0"
     variable_clear_the_authentication_library = "a"
+
 
 def more_settings_menus():
     clear()
@@ -338,6 +401,5 @@ def minecraft_settings_menu():
 
 def server_restart_menu():
     clear()
-
 
 #
